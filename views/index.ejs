@@ -4,21 +4,23 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 </head>
 
 <body>
 <div class="jumbotron text-center">
   <div class="container">
-    <p>First Name: <%= fname %></p>
-	<p>Last Name: <%=lName %></p>
+    <p>First Name: fname </p>
+	<p>Last Name: lName </p>
    </div>
 </div>
-
 <div class="container">
+  <!--
   <div class="row">
     <div class="col-sm-4">
       <h3>Column 1</h3>
@@ -36,6 +38,35 @@
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
   </div>
+  
+
+  <table style="width:100%" class="table table-dark table-hover">
+  <tr>
+    <th>เฟิสต์เนมส์</th>
+    <th>ลาสต์เนมส์</th>
+    <th>แอดเดรส</th>
+  </tr>
+  <tr>
+    <td>ทรงศักสิ์</td>
+    <td>ทิติทนานนท์</td>
+    <td>203.131.208.11</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+  </table>
+  -->
+  <form action="/api">
+	<label for="text">รหัสนักศึกษาส์:</label><br>
+	<input type="text" id="user" name="user" value=""><br>
+	<label for="text">รหัสผ่านส์:</label><br>
+
+	<input type="password" id="pwd" name="pwd" value=""><br><br>
+	<input type="submit" value="OKส์">
+	<input type="reset" value="ไม่ OKส์">
+  </form> 
 </div>
 
 </body>
