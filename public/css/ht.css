@@ -1,0 +1,43 @@
+body {
+    border: solid blue;
+    padding-left: 15em;
+    
+    font-family: Kanit,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: purple;
+    background-color: #d8da3d;}
+ul.navbar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    width: 9em;
+    /*border: solid #000000;
+    max-width: auto;
+    margin: auto;*/
+}
+ul.navbar li {
+    background: white;
+    margin: 0.5em 0;
+    padding: 0.3em;
+    border-right: 1em solid black }
+ul.navbar a {
+    text-decoration: none }
+a:link {
+    color: blue }
+a:visited {
+    color: purple }
+p {
+    font-family: Kanit,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+  }
+address {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: thin dotted }

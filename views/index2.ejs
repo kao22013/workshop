@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CS264 Group-1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="css/index.css" rel="stylesheet" type="text/css">
+
+  <!-- modl script -->
+
+  <script>
+    $(document).ready(function(){
+            $('#myModal').modal('show');
+    });
+  </script>
+
+</head>
+
+<body>
+    
+    <div class="center">
+    
+        <div class="container" >
+            
+            <!-- login forms -->
+      
+            <form action="/api">
+                <label for="text">รหัสนักศึกษาส์:</label><br>
+                <input type="text" id="user" name="user" value=""><br>
+                <label for="text">รหัสผ่านส์:</label><br>
+                <input type="password" id="pwd" name="pwd" value=""><br><br>
+                <input type="submit" value="OKส์">
+                <input type="reset" value="ไม่ OKส์">
+            </form>
+    
+        </div>
+      
+    </div>
+
+    <div class="container">
+  
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog" >
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content" style="width:100%;max-width: auto;">
+            <img src="img/GetBanner.jpg" alt="img" style="width:100%; max-width:auto; height:100%;max-height:100%;">
+              <div class="modal-footer" >
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      
+      </div>
+
+</body>
+</html>
