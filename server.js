@@ -1,17 +1,23 @@
 'use strict';
 
-//var bodyParser = require('body-parser');
-/*GLOBAL.document = new JSDOM(html).window.document;*/
 var express = require('express');
 var path = require('path');
 var https = require('https');
 var http = require('http');
+var bodyParser = require("body-parser");
+const { spawn } = require('child_process');
+
 let stdData;
+let sa=false;
+
 var PORT  = process.env.PORT || 5000;
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(__dirname+'public/css'));
@@ -28,39 +34,125 @@ app.get('/ht', function (req, res) {res.render('ht', {fname: 'CS264', lName: 'GR
 
 app.get('/login', function (req, res) {res.render('login', {fname: 'CS264', lName: 'GROUP1'});})
 
+app.get('/logout', async(req, res)=>{
+  stdData=null;
+  if(stdData=null){
+    sa=false;
+    res.render('login');
+  }else{
+    sa=false;
+    res.render('login');
+  }
+  req.write(null);
+  req.end();
+
+});
+
 app.listen(PORT, function () { console.log(`Listening on ${PORT}`) });
 
-/*const form = document.getElementById('form');*/
+//data_to_html
 
 app.get('/api', async (req, res)=>{
-    const ques = req.query;
 
-    const getData = await loginAuthen(ques['user'], ques['pwd']);
-    
-    //console.log(getData);
-    if(getData){
-       let datax=JSON.parse(getData);
-       stdData=JSON.parse(getData);
-       if(datax.status==true){
-           console.log(datax.status);
-           //res.render('login',{datax:status});
-           res.send('success.')
-       }else{
-           //res.send('fail');
-           /*return res.render('login', {
-               title: "var name",
-               status: datax.status
-            });*/
+  const ques = req.query;
+  const getData = await loginAuthen(ques['user'], ques['pwd']);
 
-            return res.redirect('/login');
-            
-       }
-       
-    }else{
-        return false;
-    }
-    
+  if(getData){
+     let datax=JSON.parse(getData);
+     stdData=JSON.parse(getData);
+     if(datax.status==true){
+        sa=true;
+        res.render('main',{name_th: datax.displayname_th,});
+     }else{
+          let fails=JSON.parse(getData);
+          console.log("this "+fails.status);
+          res.render("login", {message: fails.message, status:fails.status});
+     }
+     
+  }else{
+    console.log("this"+getData);
+    return false;
+  }
 });
+
+/*app.get("/welcome/:id", async function(req, res){ 
+  var nameid = req.params.id;
+  console.log(nameid);
+  const data = await getStudentInfo(nameid);
+  console.log(data);
+  if (data) {
+    let j = JSON.parse(data);
+    res.render("welcome", 
+    {prefix: j.data.prefixname,
+     name_th: j.data.displayname_th,
+     name_en: j.data.displayname_en,
+     email: j.data.email,
+     faculty: j.data.faculty,
+     department: j.data.department
+     });
+  }
+
+});*/
+
+app.get("/profiles", async function(req, res){
+  if(sa==false){
+    return res.render('login');
+  }else{
+    var nameid = stdData.username;
+    console.log(nameid);
+    const data = await getStudentInfo(nameid);
+    console.log(data);
+    if (data) {
+      let j = JSON.parse(data);
+      res.render("profiles", 
+      {prefix: j.data.prefixname,
+       name_th: j.data.displayname_th,
+       name_en: j.data.displayname_en,
+       email: j.data.email,
+       faculty: j.data.faculty,
+       department: j.data.department
+       });
+    }
+}
+  
+});
+
+const getStudentInfo = (username) => {
+    return new Promise((resolve, reject) => {
+      var options = {
+        method: "GET",
+        hostname: "restapi.tu.ac.th",
+        path: "/api/v2/profile/std/info/?id=" + username,
+        headers: {
+          "Content-Type": "application/json",
+          "Application-Key":
+            "TU5815b44223ac5e0414a9ebd07189e32c9984410e627890e41b6ddce0d711b0bb558fdfb73578cd9155ddfd4c7ccd7c80",
+        },
+      };
+  
+      var req = https.request(options, (res) => {
+        var chunks = [];
+  
+        res.on("data", function (chunk) {
+          chunks.push(chunk);
+        });
+  
+        res.on("end", function (chunk) {
+          var body = Buffer.concat(chunks);
+          //result = body;
+          resolve(body.toString());
+          //result = chunks;
+        });
+  
+        res.on("error", function (error) {
+          console.error(error);
+          reject(error);
+        });
+      });
+  
+      req.end();
+    });
+  };
 
 const loginAuthen = (user, password)=>{
     return new Promise((resolve, reject)=>{
@@ -80,7 +172,7 @@ const loginAuthen = (user, password)=>{
         
             res.on("data", function (chunk) {
                 chunks.push(chunk);
-                console.log('this is data : '+chunk);
+                //console.log('this is data : '+chunk);
             });
         
             res.on("end", function (chunk) {

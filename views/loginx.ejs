@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <form action="/api" class="login-form" method="GET">
+        <h1>เข้าสู่ระบบ (นักศึกษา/บุคลากร)</h1>
+        
+        <div class="txtb">
+            <input type="text" id="user" name="user" value="" required>
+            <span data-placeholder="Username"></span>
+        </div>
+
+        <div class="txtb">
+            <input type="password" id="pwd" name="pwd" value="" required>
+            <span data-placeholder="Password"></span>
+        </div>
+
+        <div id="error" style="padding: 0px 10px 20px;"></div>
+
+        <input type="submit" class="logbtn" value="Login">
+
+        <!--<input type="text" name="status" id="status">-->
+       
+        <!--<div class="forgt-btn">
+           <a href="./Forgot-password.html"><h6>Forgot Password</h6></a>
+        
+        </div> -->
+
+        <!-- <div class="bottom-text">
+            Don't have account? <a href="./Register.html">Sign up</a>
+        </div> -->
+
+    </form>
+
+    <script type="text/javascript">
+        $(".txtb input").on("focus", function () {
+            $(this).addClass("focus");
+        });
+
+        $(".txtb input").on("blur", function () {
+            if ($(this).val() == "")
+                $(this).removeClass("focus");
+        });
+
+    </script>
+
+
+</body>
+
+</html>

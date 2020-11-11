@@ -1,35 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 <html>
-<head>
-  <title>My first styled page</title>
-  <link href="css/ht.css" rel="stylesheet" type="text/css">
-</head>
-
 <body>
 
-<!-- Site navigation menu -->
-<ul class="navbar">
-  <li><a href="/#">Home page</a>
-  <li><a href="musings.html">Musings</a>
-  <li><a href="town.html">My town</a>
-  <li><a href="links.html">Links</a>
-</ul>
+<div id="div1">
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is another paragraph.</p>
+</div>
 
-<!-- Main content -->
-<h1>ระบบยื่นคำร้องจดทะเบียนล้าช้า</h1>
+<script>
+var para = document.createElement("p");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);
 
-<p>ระบบยื่นคำร้องจดทะเบียนล้าช้า
-
-<p>It lacks images, but at least it has style.
-And it has links, even if they don't go
-anywhere&hellip;
-
-<p>There should be more here, but I don't know
-what yet.
-
-<!-- Sign and date the page, it's only polite! -->
-<address>Made 5 April 2004<br>
-  by myself.</address>
+var element = document.getElementById("div1");
+var child = document.getElementById("p1");
+element.insertBefore(para,child);
+</script>
 
 </body>
 </html>

@@ -5,54 +5,93 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/login.css" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
 </head>
 
 <body>
+    
+    <!--<div class="div-2columns">
+        <div>
+          <p>Hello</p>
+            <div class="split left">
+              <img src="img/div_1.jpg" alt="Girl in a jacket" width="700" height="978">
+            </div>
+            <div class="split right">
+              <img src="img/div_2.jpg" alt="Girl in a jacket" width="700" height="978">
+            </div>
 
-    <form action="/api" class="login-form" method="GET">
-        <h1>เข้าสู่ระบบ (นักศึกษา/บุคลากร)</h1>
-        
-        <div class="txtb">
-            <input type="text" id="user" name="user" value="" required>
-            <span data-placeholder="Username"></span>
         </div>
 
-        <div class="txtb">
-            <input type="password" id="pwd" name="pwd" value="" required>
-            <span data-placeholder="Password"></span>
-        </div>
+    </div>-->
 
-        <div id="error" style="padding: 0px 10px 20px;"></div>
+    <div class="row" style="box-shadow: 0px 2px 10px 0.2px #858585;">
+      <div class="column" style="background-color:#d14f4b;">
+        <img src="img/div_1.jpg" alt="Girl in a jacket" width="550" height="758">
+      </div>
+      <div class="column" style="background-color:#d14f4b;">
 
-        <input type="submit" class="logbtn" value="Login">
+        <form action="/api" class="login-form" method="GET">
+          <h1>เข้าสู่ระบบ (นักศึกษา/บุคลากร)</h1>
+          <div class="txtb">
+              <input type="text" id="user" name="user" placeholder="Username" value="" required>
+          </div>
+  
+          <div class="txtb">
+              <input type="password" id="pwd" name="pwd" placeholder="Password" value="" required>
+          </div>
+          <div style="padding-left: 72% ;padding-bottom: 5%;">
+            <input type="checkbox" id="passWordRemem" name="passWordRemem" value=true>
+            <label for="passWordRemem">Remember me</label><br>
+          </div>
 
-        <!--<input type="text" name="status" id="status">-->
-       
-        <!--<div class="forgt-btn">
-           <a href="./Forgot-password.html"><h6>Forgot Password</h6></a>
+          <div class="errorContainer" style="padding: 0px 10px 20px;">
+            <ul class="error"></ul>
+          </div>
+          <div style="padding-left: 198px ;">
+            <input type="submit" class="logbtn" value="Login">
+            <input type="submit" class="logbtn" value="Reset">
+          </div>
+          
+          
+  
+          <!--<input type="text" name="status" id="status">-->
+         
+          <!--<div class="forgt-btn">
+             <a href="./Forgot-password.html"><h6>Forgot Password</h6></a>
+          
+          </div> -->
+  
+          <!-- <div class="bottom-text">
+              Don't have account? <a href="./Register.html">Sign up</a>
+          </div> -->
+          <h6 type="text" id="message" name="message" style="font-size: 2em;"></h6>
+          
+  
+        </form>
         
-        </div> -->
-
-        <!-- <div class="bottom-text">
-            Don't have account? <a href="./Register.html">Sign up</a>
-        </div> -->
-
-    </form>
-
-    <script type="text/javascript">
-        $(".txtb input").on("focus", function () {
-            $(this).addClass("focus");
-        });
-
-        $(".txtb input").on("blur", function () {
-            if ($(this).val() == "")
-                $(this).removeClass("focus");
-        });
-
+  
+      <!--<script type="text/javascript">
+          $(".txtb input").on("focus", function () {
+              $(this).addClass("focus");
+          });
+  
+          $(".txtb input").on("blur", function () {
+              if ($(this).val() == "")
+                  $(this).removeClass("focus");
+          });
+  
+      </script>-->
+        <!-- <img type="h" src="img/div_2.jpg" alt="Girl in a jacket" width="550" height="758"> -->
+      </div>
+    </div>
+    <script>
+      let error = document.querySelector('.error');
+      
+      /*error.innerHTML += `<li>${await status}</li>`;
+      document.querySelector('.errorContainer').style.display="block";*/
+      
     </script>
-
 
 </body>
 
