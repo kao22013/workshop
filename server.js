@@ -23,16 +23,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(__dirname+'public/css'));
 app.use('/js', express.static(__dirname+'public/js'));
 app.use('/img', express.static(__dirname+'public/img'));
+app.use('/vendor/jquery', express.static(__dirname+'public/vendor/jquery'));
 
 app.engine('.ejs', require('ejs').renderFile);
 
 app.get('/', function (req, res) {res.render('login', {fname: 'CS264', lName: 'GROUP1'});});
 
-app.get('/test1', function (req, res) {res.render('test1', {fname: 'CS264', lName: 'GROUP1'});});
+/*app.get('/test1', function (req, res) {res.render('test1', {fname: 'CS264', lName: 'GROUP1'});});*/
 
-app.get('/ht', function (req, res) {res.render('ht', {fname: 'CS264', lName: 'GROUP1'});});
+/*app.get('/ht', function (req, res) {res.render('ht', {fname: 'CS264', lName: 'GROUP1'});});*/
 
 app.get('/login', function (req, res) {res.render('login', {fname: 'CS264', lName: 'GROUP1'});})
+
+/*app.get('/main2', function (req, res) {res.render('main2', {fname: 'CS264', lName: 'GROUP1'});})*/
+
+/*app.get('/main_old', function (req, res) {res.render('main_old', {fname: 'CS264', lName: 'GROUP1'});})*/
+
+app.get('/main', function (req, res) {res.render('main', {fname: 'CS264', lName: 'GROUP1'});})
+
+app.get('/enroll_nor', function (req, res) {res.render('enroll_nor', {fname: 'CS264', lName: 'GROUP1'});})
+
+app.get('/enroll_spe', function (req, res) {res.render('enroll_spe', {fname: 'CS264', lName: 'GROUP1'});})
+
+app.get('/reqStatus', function (req, res) {res.render('main', {fname: 'CS264', lName: 'GROUP1'});})
 
 app.get('/logout', async(req, res)=>{
   stdData=null;
@@ -50,11 +63,24 @@ app.get('/logout', async(req, res)=>{
 
 app.listen(PORT, function () { console.log(`Listening on ${PORT}`) });
 
-//data_to_html
+app.get('/resq', async (req, res)=>{
+
+  const ques = req.query;
+  console.log('body '+ques['id_comments']);
+  console.log('to str '+req.toString);
+
+  if(ques!=null){
+    res.redirect('enroll_nor');
+  }else{
+    console.log("this"+getData);
+    res.redirect('enroll_nor');
+}});
 
 app.get('/api', async (req, res)=>{
 
   const ques = req.query;
+  console.log('body '+ques['user']);
+  console.log('to str '+req.toString);
   const getData = await loginAuthen(ques['user'], ques['pwd']);
 
   if(getData){
@@ -65,8 +91,8 @@ app.get('/api', async (req, res)=>{
         res.render('main',{name_th: datax.displayname_th,});
      }else{
           let fails=JSON.parse(getData);
-          console.log("this "+fails.status);
-          res.render("login", {message: fails.message, status:fails.status});
+          //console.log("this "+fails.status);
+          res.render('login', {message: fails.message, status:fails.status});
      }
      
   }else{
@@ -75,24 +101,28 @@ app.get('/api', async (req, res)=>{
   }
 });
 
-/*app.get("/welcome/:id", async function(req, res){ 
-  var nameid = req.params.id;
-  console.log(nameid);
-  const data = await getStudentInfo(nameid);
-  console.log(data);
-  if (data) {
-    let j = JSON.parse(data);
-    res.render("welcome", 
-    {prefix: j.data.prefixname,
-     name_th: j.data.displayname_th,
-     name_en: j.data.displayname_en,
-     email: j.data.email,
-     faculty: j.data.faculty,
-     department: j.data.department
-     });
-  }
-
-});*/
+app.get("/main", async function(req, res){
+  if(sa==false){
+    return res.render('login');
+  }else{
+    var nameid = req.query.username;
+    console.log(nameid);
+    const data = await getStudentInfo(nameid);
+    //console.log(data);
+    if (data) {
+      let j = JSON.parse(data);
+      res.render("main",
+      {prefix: j.data.prefixname,
+        name_th: j.data.displayname_th,
+        name_en: j.data.displayname_en,
+        email: j.data.email,
+        faculty: j.data.faculty,
+        department: j.data.department
+      });
+    }
+}
+  
+});
 
 app.get("/profiles", async function(req, res){
   if(sa==false){
@@ -101,7 +131,7 @@ app.get("/profiles", async function(req, res){
     var nameid = stdData.username;
     console.log(nameid);
     const data = await getStudentInfo(nameid);
-    console.log(data);
+    //console.log(data);
     if (data) {
       let j = JSON.parse(data);
       res.render("profiles", 

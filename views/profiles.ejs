@@ -1,99 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ข้อมูลส่วนตัว</title>
-<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/profiles.css" type="text/css">
-<script>
-    $(document).ready(function(){
-            $('#myModal').modal('show');
-    });
-</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ระบบลงทะเบียนล่าช้า</title>
+    <!-- ICON -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/main2.js"></script>
+    
 </head>
 <body>
-<nav class="navbar navbar-default">
-	<div class="navbar-header">
-		<!--<img class="img-logo" src="img/logo.png">-->
-		<a class="navbar-brand" href="#"><i class="fa fa-cube"></i><b style="font-size: 26px;padding-left:10px;">ระบบลงทะเบียนเรียนล่าช้า</b></a>
-		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-			<span class="navbar-toggler-icon"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-	</div>
-	<!-- Collection of nav links, forms, and other content for toggling -->
-	<div id="navbarCollapse" class="collapse navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">|</a></li>
-			<li class="active"><a href="/enroll" style="font-size: 20px;">ดำเนินการลงทะเบียนล่าช้า</a></li>
-		</ul>
-		<!--<form class="navbar-form form-inline">
-			<div class="input-group search-box">								
-				<input type="text" id="search" class="form-control" placeholder="Search by Name">
-				<span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-			</div>
-		</form>-->
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" class="notifications"><i class="fa fa-bell-o"></i><span class="badge">0</span></a></li>
-			<li><a href="#" class="messages"><i class="fa fa-envelope-o"></i><span class="badge">0</span></a></li>
-			<li class="dropdown">
-				<a href="#" data-toggle="dropdown" class="dropdown-toggle user-action"><i class="small account_circle"></i><%= name_th%><b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="/profiles" ><i class="fa fa-user-o"></i>ข้อมูลส่วนตัว</a></li>
-					<li><a href="/enroll"><i class="fa fa-calendar-o"></i>ลงทะเบียนล่าช้า</a></li>
-					<li class="divider"></li>
-					<li><a href="/logout"><i class="material-icons">&#xE8AC;</i>ออกจากระบบ</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</nav>
+    <nav class="navbar navbar-default no-margin">
+    
+        <div class="navbar-header fixed-brand">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
+            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+          </button>
+          
+          <p3 class="navbar-brand" href="#" style="font-size: 26px; color: white; padding: 10px;"><i class="fa fa-rocket fa-4" style="padding-right: 10px;"></i>ระบบลงทะเบียนเรียนล่าช้า</p3>
+        </div>
+        
+    </nav>
+    
+<div id="viewport">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <header>
+        <div class="img bg-wrap text-center py-4" style="background-image: url(img/bg_1.jpg);">
+            <div class="user-logo">
+                <div class="img" style="background-image: url(img/profiles.png);"></div>
+                <h3>Wellcome to TU Late Registration</h3>
+            </div >
+            
+        </div>
+    </header>
+    <ul class="nav">
+      <li>
+        <a href="/main"><i class="zmdi zmdi-view-dashboard"></i> หน้าหลัก</a>
+      </li>
+      <li>
+        <a href="/profiles"><i class="zmdi zmdi-link"></i> ข้อมูลส่วนตัว</a>
+      </li>
+      <li>
+        <a href="/enroll_nor"><i class="zmdi zmdi-widgets"></i> ลงทะเบียน</a>
+      </li>
+      <li>
+        <a href="/enroll_spe"><i class="zmdi zmdi-calendar"></i> ลงทะเบียนล่าช้า</a>
+      </li>
+      <li>
+        <a href="/reqStatus"><i class="zmdi zmdi-info-outline"></i> สถานะคำร้อง</a>
+      </li>
+      <li>
+        <a href="/logout"><i class="zmdi zmdi-settings"></i> ออกจากระบบ</a>
+      </li>
+    </ul>
+  </div>
 
-<!-- BODY -->
-<div class="content">
-	<div id="error" style="padding: 0px 10px 20px;">
-		<ul class="error">
+  <!-- Content -->
+<div id="content">
+    <!-- DIV TOP -->
+    <div class="container" style="margin: auto; padding-top: 2%;">
+        <div class="div-top-bar"><b style="color: #f75f19;">ข้อมูลส่วนตัว</b></div>
+        <div class="div-center-bar">
+            <h4><%=prefix%> <%=name_en%></h4>
+            
+            <h4><%=name_th%></h4>
+            <h4><%=faculty%></h4>
+            <h4><%=department%></h4>
 
-		</ul>
-	  
-	</div>
-	<h1>
-		hello
-	</h1>
-	<h6><%= prefix%><%= name_en%></h6>
-	<h6><%= name_th%></h6>
-	<h6><%= email%></h6>
-	<h6><%= faculty%></h6>
-	<h6><%= department%></h6>
+        </div>
+        <div class="container"><b style="color: #f75f19;"></b></div>
 
-</div>
+    </div>
+    
 
-<div class="container">
-  
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog" >
-	  <div class="modal-dialog">
-		<!-- Modal content-->
-		<div class="modal-content" style="width:100%;max-width:800px;">
-		<img src="img/GetBanner.jpg" alt="img" style="width:800px;max-width:100%; height:100%;max-height:100%;">
-		  <div class="modal-footer" >
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		  </div>
-		</div>
-		
-	  </div>
-	</div>
-  
+    <!--<div class="container-fluid">
+      <h1>Simple Sidebar</h1>
+      <p>Make sure to keep all page content within the <code>#content</code>.</p>
+    </div>-->
+    
+  </div>
 </div>
 
 </body>
-</html>                            
+</html>  
